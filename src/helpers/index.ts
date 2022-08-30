@@ -1,0 +1,1 @@
+export { obtenerUbicacionUsuario } from './obtenerUbicacionUsuarios';
