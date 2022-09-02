@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
 import { LugaresProvider } from './context/lugares/LugaresProvider';
@@ -11,21 +11,22 @@ import { LoginContext } from './context/login/LoginContext';
 export const GeoLocApp = () => {
 
   const { user } = useContext(LoginContext)
-  
+
+  console.log('USER -> ', user)
 
   return (
-    <LoginProvider>
-      <LugaresProvider>
-        <MapProvider>
-          <Router>
+    <Router>
+      <LoginProvider>
+        <LugaresProvider>
+          <MapProvider>
             <Routes>
               <Route path='/registro' element={<Registro />} />
               <Route path='/login' element={<Login />} />
               <Route path='/' element={user ? <HomePage /> : <Navigate to='/login' />} />
             </Routes>
-          </Router>
-        </MapProvider>
-      </LugaresProvider>
-    </LoginProvider>
+          </MapProvider>
+        </LugaresProvider>
+      </LoginProvider>
+    </Router>
   )
 }

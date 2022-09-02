@@ -1,0 +1,125 @@
+:root {
+    --dark: #16191c;
+    --dark-x: #1e2126;
+    --light: #ffffff;
+    --azul:#134074;
+    --azulOscuro:#0B2545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bg-light {
+    background-color: var(--dark)!important;
+}
+
+.bg-dark {
+    background-color: var(--dark)!important;
+}
+
+.p-6 {
+    padding: 4rem 7rem;
+}
+
+.contact-box {
+    padding: 3rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    background-color: var(--dark);
+    color: var(--color-light);
+    letter-spacing: .05rem;
+    /*width: 100%;
+    height: 100vh;*/
+    overflow: hidden;
+}
+
+.titulo {
+    color: var(--light);
+}
+
+.btn {
+    font-weight: 400;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    min-width: 10rem;
+}
+
+.btn-outline-dark {
+    border: 2px solid var(--dark-x);
+}
+
+
+.form-control {
+    background-color: var(--dark-x);
+    border: 2px solid var(--dark-x);
+    border-radius: .2rem;
+    padding: 1.5rem 1rem;
+}
+
+.name-lastname {
+    width: 100vw;
+    display: flex;
+}
+
+.name-lastname .name {
+    color: var(--light);
+}
+
+.name-lastname .lastname {
+    margin-left: -300px;
+    color: var(--light);
+}
+
+.name-lastname .nameInput {
+    width: 50%;
+}
+
+.name-lastname .lastnameInput {
+    width: 50%;
+    margin-left: -300px;
+}
+
+.phoneInput input {
+    margin-left: 20px;
+}
+
+.phoneInput label {
+    color: var(--light);
+    margin-left: 25px;
+}
+
+.register-bg {
+    /*background-image: url('images/hero.jpg');*/
+    background-color: red;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.testiomonial {
+    bottom: 10px
+}
+
+@media (max-width: 575.98px) {
+    .p-6 {
+        padding: 2rem;
+    }
+
+    .contact-box {
+        padding: 0;
+    }
+
+    .width-100 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) { 
+    .register-bg {
+        min-height: 50vh;
+    }
+}

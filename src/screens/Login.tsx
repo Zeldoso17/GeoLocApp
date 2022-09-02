@@ -1,9 +1,17 @@
 import React, { useState, useContext, ChangeEvent, FormEvent } from 'react'
 import Globe from 'react-globe.gl'
 import { Link } from 'react-router-dom'
+import { values, size } from 'lodash'
 
 import '../screens/css/login.css'
 import { LoginContext } from '../context/login/LoginContext';
+import { toast } from 'react-toastify';
+//import { User } from '../interfaces/login';
+
+type initialDataLogin = {
+  username: string,
+  password: string
+}
 
 export const Login = () => {
 
@@ -16,7 +24,9 @@ export const Login = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    login(data.username, data.password)
+    if (isValidated(data)) {
+      login(data.username, data.password)
+    }
   }
 
   return (
@@ -65,3 +75,26 @@ function initialData() {
     password: ''
   }
 }
+
+function isValidated(data: initialDataLogin) {
+  let validCount = 0;
+
+  values(data).some(value => {
+    value && validCount++;
+    return null;
+  })
+
+  if (validCount !== size(data)) {
+    toast.warning('Completa todos los campos')
+    return false
+  }
+
+  if (size(data.password) < 6) {
+    toast.warning("La contraseña debe tener al menos 6 caracteres")
+    return false
+  }
+  return true
+}
+
+
+  
