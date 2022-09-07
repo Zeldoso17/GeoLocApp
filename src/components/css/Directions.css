@@ -1,0 +1,62 @@
+.direcciones-container {
+    background-color: #ffffff;
+    width: 15%;
+    border: 1px solid #000000;
+    position: relative;
+    top: 80px;
+    left: 20px;
+    z-index: 999;
+}
+
+.distance-time {
+    background-color: lightgray;
+    height: 75px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #000000;
+}
+
+.distance {
+    height: 50px;
+    margin-top: 18px;
+    margin-left: -12px;
+}
+
+.distance .texto {
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    margin-left: 10px;
+    color: #000000;
+}
+
+.distance .numero {
+    width: 65%;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-left: 20px;
+}
+
+.time {
+    height: 50px;
+    margin-top: 18px;
+}
+
+.time .texto {
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    color: #000000;
+}
+
+.time .numero {
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-left: 70px;
+    width: 65%;
+}
+
+.directions {
+    margin-left: 5px;
+   font-size: 16px;
+}

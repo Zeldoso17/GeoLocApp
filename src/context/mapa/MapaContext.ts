@@ -5,6 +5,7 @@ import { Map } from 'mapbox-gl'
 interface MapContextProps {
     isMapReady: boolean
     map?: Map
+    direcciones: Array<string>
 
     setMap: (map: Map) => void
     obtenerRuta: (start: [number, number], end: [number, number]) => Promise<void>

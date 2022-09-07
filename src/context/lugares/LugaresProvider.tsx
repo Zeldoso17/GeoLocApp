@@ -69,7 +69,7 @@ export const LugaresProvider = ({ children }: Props) => {
                 metros: rango // Establecemos a cuantos metros a su alrededor desea buscar
             },
             headers: {
-                Authorization: 'Token 630e3189fff9333efa03142c023c74d31c4103ce' // Establecemos el Token de autenticación
+                Authorization: 'Token 8d9c4223baa9d5ed6e672a9e3e006a503bfdf3bc' // Establecemos el Token de autenticación
             },
         })
             /* Disparamos el evento setPlaces para guardar los lugares en el state */

@@ -5,6 +5,7 @@ import { Map, Marker } from 'mapbox-gl';
 type MapAction = 
 | { type: 'setMap', payload: Map }
 | { type: 'setMarkers', payload: Marker[] }
+| { type: 'setDirections', payload: Array<string> }
 
 // Aquí se crea la función pura, pasandole el estado y la acción a ejecutar
 // Le ponemos que es de tipo LugaresState, para que se retorne un objeto igual
@@ -21,6 +22,11 @@ export const mapReducer = ( state:MapState, action: MapAction ): MapState => {
             return {
                 ...state, // Obtenemos todo lo que este en el state
                 markers: action.payload // Estamos guardando todos los marcadores en un array del state
+            }
+        case 'setDirections':
+            return {
+                ...state,
+                direcciones: action.payload
             }
         
         default:

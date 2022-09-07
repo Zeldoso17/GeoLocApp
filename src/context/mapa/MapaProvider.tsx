@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useContext } from 'react'
+import React, { useState, useEffect, useReducer, useContext } from 'react'
 import { AnySourceData, LngLatBounds, Map, Marker, Popup } from 'mapbox-gl'
 
 import { MapaContext } from './MapaContext'
@@ -7,12 +7,14 @@ import { LugaresContext } from '../lugares/LugaresContext';
 import directionsApi from '../../apis/directionsApi';
 import { DirectionsResponse } from '../../interfaces/direcciones';
 import { Lugares } from '../../interfaces/lugares';
+import { Directions } from '../../components/Directions';
 
 // Interfaz para saber que información es la que necesitamos
 export interface MapState {
     isMapReady: boolean;
     map?: Map;
     markers: Marker[];
+    direcciones: Array<string>;
 }
 
 // Estado inicial de la aplicación
@@ -20,6 +22,7 @@ const INITIAL_STATE: MapState = {
     isMapReady: false,
     map: undefined,
     markers: [],
+    direcciones: []
 }
 
 // Esta interfaz es para decirle al children que sera de tipo JSX.Element
@@ -34,12 +37,19 @@ export const MapProvider = ({ children }: Props) => {
 
     const { lugares, userLocation } = useContext(LugaresContext);
 
+    const [isRoute, setIsRoute] = useState(false)
+    const [kms, setKms] = useState(0)
+    const [mins, setMins] = useState(0)
+
+    let direcciones: Array<string> = [];
+
     const getRoute = (lugar: Lugares) => {
         if (!userLocation) return; // Validamos que tengamos la ubicación del usuario
         const longitud = parseFloat(lugar.Longitud); // obtenemos la longitud a partir de la interfaz creada
         const latitud = parseFloat(lugar.Latitud); // Obtenemos la Latitud a partir de la interfaz creada
         
-        userLocation.reverse().join(',') // Volteamos el arreglo, para obtener lo siguiente [ longitud, latitud ]
+        //userLocation.reverse().join(',') // Volteamos el arreglo, para obtener lo siguiente [ longitud, latitud ]
+        console.log('User Location', userLocation)
 
         obtenerRuta(userLocation, [longitud, latitud]); // Hacemos la petición al api
         /*
@@ -117,7 +127,7 @@ export const MapProvider = ({ children }: Props) => {
         // Hacemos la petición al api de mapbox
         const respuesta = await directionsApi.get<DirectionsResponse>(`/${start};${end}`);
         // Desestructuramos las rutas de la respuesta
-        const { distance, duration, geometry } = respuesta.data.routes[0];
+        const { distance, duration, geometry, legs } = respuesta.data.routes[0];
         const { coordinates: coords } = geometry // Obtenemos las coordenadas del geometry, para pintar la Ruta
 
         /*
@@ -128,6 +138,7 @@ export const MapProvider = ({ children }: Props) => {
         let kms = distance / 1000;
         kms = Math.round(kms * 100);
         kms /= 100;
+        setKms(kms)
 
         /*
             Obtenemos el tiempo en minutos que hay desde
@@ -136,6 +147,19 @@ export const MapProvider = ({ children }: Props) => {
         */
         const minutos = Math.floor(duration / 60);
         console.log({ kms, minutos })
+        setMins(minutos)
+
+        //setSteps( legs[0].steps )
+        direcciones = []
+        legs[0].steps.forEach(step => {
+            direcciones.push(step.maneuver.instruction)
+        })
+
+        console.log( direcciones )
+
+        dispatch({ type: 'setDirections', payload: direcciones })
+        
+        setIsRoute(true)
 
         /*
             Creamos el plano donde vamos a pintar
@@ -219,6 +243,7 @@ export const MapProvider = ({ children }: Props) => {
                 obtenerRuta,
             }}>
                 {children}
+                { isRoute ? <Directions distancia={kms} tiempo={mins} /> : '' }
             </MapaContext.Provider>
         </div>
     )
