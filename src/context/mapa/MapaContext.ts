@@ -6,6 +6,7 @@ interface MapContextProps {
     isMapReady: boolean
     map?: Map
     direcciones: Array<string>
+    lugar: Array<Object>
 
     setMap: (map: Map) => void
     obtenerRuta: (start: [number, number], end: [number, number]) => Promise<void>

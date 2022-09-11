@@ -58,5 +58,13 @@
 
 .directions {
     margin-left: 5px;
-   font-size: 16px;
+    font-size: 16px;
+}
+
+.more-info {
+    position: absolute;
+    top: 60%;
+    left: 20px;
+    width: 15%;
+    z-index: 1000;
 }

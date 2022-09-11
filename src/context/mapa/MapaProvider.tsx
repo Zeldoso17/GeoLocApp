@@ -4,10 +4,14 @@ import { AnySourceData, LngLatBounds, Map, Marker, Popup } from 'mapbox-gl'
 import { MapaContext } from './MapaContext'
 import { mapReducer } from './MapaReducer'
 import { LugaresContext } from '../lugares/LugaresContext';
-import directionsApi from '../../apis/directionsApi';
+import { directionsApi, searchLugarApi } from '../../apis';
 import { DirectionsResponse } from '../../interfaces/direcciones';
 import { Lugares } from '../../interfaces/lugares';
 import { Directions } from '../../components/Directions';
+import { Button } from 'react-bootstrap'
+import '../../components/css/Directions.css'
+import { LocalResponse } from '../../interfaces/local';
+import { ModalInfo } from '../../components'
 
 // Interfaz para saber que información es la que necesitamos
 export interface MapState {
@@ -15,6 +19,7 @@ export interface MapState {
     map?: Map;
     markers: Marker[];
     direcciones: Array<string>;
+    lugar: Lugares[];
 }
 
 // Estado inicial de la aplicación
@@ -22,7 +27,8 @@ const INITIAL_STATE: MapState = {
     isMapReady: false,
     map: undefined,
     markers: [],
-    direcciones: []
+    direcciones: [],
+    lugar: [],
 }
 
 // Esta interfaz es para decirle al children que sera de tipo JSX.Element
@@ -40,6 +46,10 @@ export const MapProvider = ({ children }: Props) => {
     const [isRoute, setIsRoute] = useState(false)
     const [kms, setKms] = useState(0)
     const [mins, setMins] = useState(0)
+    const [isInfo, setIsInfo] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+    const [id, setId] = useState('')
+    const [placeData, setPlaceData] = useState<LocalResponse[]>([]);
 
     let direcciones: Array<string> = [];
 
@@ -58,6 +68,22 @@ export const MapProvider = ({ children }: Props) => {
             se vuelva a invertir de tipo [ longitud, latitud ]
         */
         //userLocation.reverse().join(',')
+    }
+
+    const getPlaceInfo = async ( id: string ) => {
+        const respuesta = await searchLugarApi.get<LocalResponse[]>(`/api/getPlace/${id}`, {
+            headers: {
+                Authorization: 'Token 8d9c4223baa9d5ed6e672a9e3e006a503bfdf3bc' // Establecemos el Token de autenticación
+            },
+        });
+        console.log(respuesta.data)
+        setIsInfo(true)
+        setShowModal(true)
+        setPlaceData(respuesta.data)
+
+        console.log("setIsInfo -> ", isInfo)
+
+        
     }
 
     useEffect(() => {
@@ -85,6 +111,7 @@ export const MapProvider = ({ children }: Props) => {
                 .addTo(state.map!) // lo agregamos al mapa
                 .getElement().addEventListener('click', () => { // Agregamos un evento clic para cada marcador
                     // Logica para mostar la ruta
+                    setId(lugar.Id)
                     getRoute(lugar);
                 })
 
@@ -233,6 +260,7 @@ export const MapProvider = ({ children }: Props) => {
 
     }
 
+
     return (
         // Aquí hacemos uso del contexto del archivo MapaContext
         // y le pasamos el valor que tenga el state del reducer
@@ -243,7 +271,9 @@ export const MapProvider = ({ children }: Props) => {
                 obtenerRuta,
             }}>
                 {children}
-                { isRoute ? <Directions distancia={kms} tiempo={mins} /> : '' }
+                { isRoute && <Directions distancia={kms} tiempo={mins} /> }
+                { isRoute && <Button className='more-info' type="button" onClick={() => getPlaceInfo(id) }>Mas información</Button> }
+                { isInfo && <ModalInfo info={placeData} showModal={showModal} setShowModal={setShowModal} />}
             </MapaContext.Provider>
         </div>
     )

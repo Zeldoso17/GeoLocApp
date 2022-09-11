@@ -1,11 +1,13 @@
 import { MapState } from "./MapaProvider";
 import { Map, Marker } from 'mapbox-gl';
+import { Lugares } from "../../interfaces/lugares";
 
 // Aquí creamos un type para saber que tipo de acciones haremos
 type MapAction = 
 | { type: 'setMap', payload: Map }
 | { type: 'setMarkers', payload: Marker[] }
 | { type: 'setDirections', payload: Array<string> }
+| { type: 'setLugar', payload: Lugares[] }
 
 // Aquí se crea la función pura, pasandole el estado y la acción a ejecutar
 // Le ponemos que es de tipo LugaresState, para que se retorne un objeto igual
@@ -27,6 +29,10 @@ export const mapReducer = ( state:MapState, action: MapAction ): MapState => {
             return {
                 ...state,
                 direcciones: action.payload
+            }
+        case 'setLugar':
+            return {
+                ...state
             }
         
         default:

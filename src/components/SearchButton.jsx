@@ -14,7 +14,7 @@ export const SearchButton = () => {
         style={{
             position: 'fixed', 
             top: '25px', 
-            left: '470px', 
+            left: '530px', 
             zIndex: 999,
             width: '100px',
         }}>

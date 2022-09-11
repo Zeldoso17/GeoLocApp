@@ -6,8 +6,8 @@ export const HomePage = () => {
     <div>
         <MapView />
         <BtnMyLocation />
-        <SearchBar placeholder="Buscar Lugar..." class="search-container" />
-        <SearchBar placeholder="Radio de búsqueda ( metros )" class="radio-container" />
+        <SearchBar placeholder="Buscar Lugares (ej. Farmacias)" class="search-container" />
+        <SearchBar placeholder="Radio de búsqueda (metros)" class="radio-container" />
         <SearchButton />
     </div>
   )
