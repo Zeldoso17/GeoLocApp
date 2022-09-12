@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { LugaresProvider } from './context/lugares/LugaresProvider';
 import { HomePage, Login, Registro } from './screens';
@@ -9,12 +9,6 @@ import { LoginProvider } from './context/login/LoginProvider';
 //import { LoginContext } from './context/login/LoginContext';
 
 export const GeoLocApp = () => {
-
-  //const { user } = useContext(LoginContext)
-  //console.log('USER -> ', user)
-
-  const [user, setUser] = useState({nombre: 'Emilio'})
-
   return (
     <Router>
       <LoginProvider>
@@ -22,8 +16,8 @@ export const GeoLocApp = () => {
           <MapProvider>
             <Routes>
               <Route path='/registro' element={<Registro />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/' element={user ? <HomePage /> : <Navigate to='/login' />} />
+              <Route path='/' element={<Login />} />
+              <Route path='/mapa' element={ <HomePage /> } />
             </Routes>
           </MapProvider>
         </LugaresProvider>

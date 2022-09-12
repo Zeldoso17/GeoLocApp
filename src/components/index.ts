@@ -1,3 +1,4 @@
+export { LogoutButton } from './LogoutButton';
 export { ModalInfo } from './ModalInfo';
 export { SearchButton } from './SearchButton';
 export { SearchBar } from './SearchBar';

@@ -3,7 +3,7 @@
     width: 15%;
     border: 1px solid #000000;
     position: relative;
-    top: 80px;
+    top: 120px;
     left: 20px;
     z-index: 999;
 }
@@ -63,7 +63,7 @@
 
 .more-info {
     position: absolute;
-    top: 60%;
+    top: 8%;
     left: 20px;
     width: 15%;
     z-index: 1000;

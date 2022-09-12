@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
 
+import { useNavigate } from 'react-router-dom'
+
 import { LoginContext } from "./LoginContext";
 import { loginReducer } from './LoginReducer'
 import loginApi from '../../apis/loginApi';
@@ -22,6 +24,7 @@ interface Props {
 export const LoginProvider = ({ children }: Props) => {
 
     const [state, dispatch] = useReducer(loginReducer, INITIAL_STATE);
+    const navigate = useNavigate()
 
 
     const login = ( username: string, password: string ): string => {
@@ -35,6 +38,7 @@ export const LoginProvider = ({ children }: Props) => {
         .then(response => {
             dispatch({ type: 'setUser', payload: response.data.user })
             localStorage.setItem('token', response.data.access_token)
+            navigate('/mapa')
         })
 
         return ''

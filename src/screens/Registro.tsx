@@ -31,7 +31,7 @@ export const Registro = () => {
     event.preventDefault()
     if (isValidated(data)) {
       registrarUsuario( data )
-      navigate('/login')
+      navigate('/')
     }
   }
 
@@ -94,7 +94,7 @@ export const Registro = () => {
               {/* Boton de registrate */}
               <input type="submit" className='boton' value={'Registrarme'} />
             </form>
-            <p className='iniciaSesion'>¿Ya tienes una cuenta? <Link to='/login'>inicia sesión aquí</Link></p>
+            <p className='iniciaSesion'>¿Ya tienes una cuenta? <Link to='/'>inicia sesión aquí</Link></p>
           </div>
         </div>
       </section>

@@ -38,6 +38,7 @@ export const LugaresProvider = ({ children }: Props) => {
 
     // Aquí usamos el reducer que se creo en el archivo lugaresReducer
     const [state, dispatch] = useReducer(lugaresReducer, INITIAL_STATE)
+    const Token = localStorage.getItem('token')
 
     useEffect(() => {
         // Ejecutamos la función que esta en el helper que nos ayuda a obtener la ubicación del usuario
@@ -69,7 +70,7 @@ export const LugaresProvider = ({ children }: Props) => {
                 metros: rango // Establecemos a cuantos metros a su alrededor desea buscar
             },
             headers: {
-                Authorization: 'Token 8d9c4223baa9d5ed6e672a9e3e006a503bfdf3bc' // Establecemos el Token de autenticación
+                Authorization: `Token ${Token}` // Establecemos el Token de autenticación
             },
         })
             /* Disparamos el evento setPlaces para guardar los lugares en el state */
