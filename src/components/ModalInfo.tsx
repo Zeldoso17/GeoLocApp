@@ -21,15 +21,15 @@ export const ModalInfo = (props: Props) => {
                <Modal.Title> <h2>{ info[0].Nombre }</h2> </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {info[0].Calle && <p>CALLE: { info[0].Calle }</p>}
-                {info[0].Colonia && <p>COLONIA: { info[0].Colonia }</p>}
-                {info[0].Correo_e && <p>CORREO ELECTORNICO: { info[0].Correo_e }</p>}
-                {info[0].NumLocal && <p>NUMERO DE LOCAL: { info[0].NumLocal }</p>}
-                {info[0].Num_Exterior && <p>NUMERO EXTERIOR: { info[0].Num_Exterior }</p>}
-                {info[0].Num_Interior && <p>NUMERO INTERIOR: { info[0].Num_Interior }</p>}
-                {info[0].Sitio_internet && <p>SITIO DE INTERNET: { info[0].Sitio_internet }</p>}
-                {info[0].Telefono && <p>TELEFONO: { info[0].Telefono }</p>}
-                {info[0].Ubicacion && <p>UBICACION: { info[0].Ubicacion }</p> }
+                <p>CALLE: { info[0].Calle ? info[0].Calle:'No se encontró ningun resultado'}</p>
+                <p>COLONIA: { info[0].Colonia ? info[0].Colonia : 'No se encontró ningun resultado' }</p>
+                <p>CORREO ELECTORNICO: { info[0].Correo_e ? info[0].Correo_e : 'No se encontró ningun resultado' }</p>
+                <p>NUMERO DE LOCAL: { info[0].NumLocal ? info[0].NumLocal : 'No se encontró ningun resultado' }</p>
+                <p>NUMERO EXTERIOR: { info[0].Num_Exterior ? info[0].Num_Exterior : 'No se encontró ningun resultado' }</p>
+                <p>NUMERO INTERIOR: { info[0].Num_Interior ? info[0].Num_Interior : 'No se encontró ningun resultado' }</p>
+                <p>SITIO DE INTERNET: { info[0].Sitio_internet ? info[0].Sitio_internet : 'No se encontró ningun resultado' }</p>
+                <p>TELEFONO: { info[0].Telefono ? info[0].Telefono : 'No se encontró ningun resultado' }</p>
+                <p>UBICACION: { info[0].Ubicacion ? info[0].Ubicacion : 'No se encontró ningun resultado' }</p> 
             </Modal.Body>
         </Modal>
     </>
