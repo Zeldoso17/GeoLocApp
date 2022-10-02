@@ -72,7 +72,7 @@ export const MapProvider = ({ children }: Props) => {
 
     const getPlaceInfo = async ( id: string ) => {
         const Token = localStorage.getItem('token')
-        const respuesta = await searchLugarApi.get<LocalResponse[]>(`/api/getPlace/${id}`, {
+        const respuesta = await searchLugarApi.get<LocalResponse[]>(`/api/getPlaceInfo/${id}`, {
             headers: {
                 Authorization: `Token ${Token}` // Establecemos el Token de autenticación
             },

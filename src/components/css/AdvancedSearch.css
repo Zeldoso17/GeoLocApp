@@ -1,0 +1,17 @@
+
+.modal-footer {
+    background-color: #f4eff3;
+}
+
+.modal-footer .grupo-botones {
+    width: 100%;
+}
+
+.modal-footer .grupo-botones .cancelButton {
+    width: 20%;
+    margin-right: 30px;
+}
+
+.modal-footer .grupo-botones .successButton {
+    width: 20%;
+}

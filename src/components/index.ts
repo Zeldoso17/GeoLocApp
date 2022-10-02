@@ -1,3 +1,4 @@
+export { AdvancedSearchButton } from './AdvancedSearchButton';
 export { LogoutButton } from './LogoutButton';
 export { ModalInfo } from './ModalInfo';
 export { SearchButton } from './SearchButton';
