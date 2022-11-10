@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdvancedSearchButton, BtnMyLocation, MapView, SearchBar, SearchButton, LogoutButton } from '../components';
+import { RegisterPlaceButton, AdvancedSearchButton, BtnMyLocation, MapView, SearchBar, SearchButton, LogoutButton } from '../components';
 
 export const HomePage = () => {
 
@@ -13,6 +13,7 @@ export const HomePage = () => {
         <SearchBar placeholder="Radio de búsqueda (metros)" class="radio-container" />
         <SearchButton />
         <AdvancedSearchButton />
+        <RegisterPlaceButton />
         {token && <LogoutButton />}
     </div>
   )

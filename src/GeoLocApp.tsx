@@ -6,21 +6,23 @@ import { HomePage, Login, Registro } from './screens';
 import { MapProvider } from './context/mapa/MapaProvider';
 import './styles.css'
 import { LoginProvider } from './context/login/LoginProvider';
-//import { LoginContext } from './context/login/LoginContext';
+import { AdvancedSearchProvider } from './context/advancedSearch/advancedSearchProvider'
 
 export const GeoLocApp = () => {
   return (
     <Router>
       <LoginProvider>
-        <LugaresProvider>
-          <MapProvider>
-            <Routes>
-              <Route path='/registro' element={<Registro />} />
-              <Route path='/' element={<Login />} />
-              <Route path='/mapa' element={ <HomePage /> } />
-            </Routes>
-          </MapProvider>
-        </LugaresProvider>
+        <AdvancedSearchProvider>
+            <LugaresProvider>
+              <MapProvider>
+                <Routes>
+                  <Route path='/registro' element={<Registro />} />
+                  <Route path='/' element={<Login />} />
+                  <Route path='/mapa' element={ <HomePage /> } />
+                </Routes>
+              </MapProvider>
+            </LugaresProvider>
+        </AdvancedSearchProvider>
       </LoginProvider>
     </Router>
   )

@@ -1,3 +1,4 @@
+export { RegisterPlaceButton } from './RegisterPlaceButton';
 export { AdvancedSearchButton } from './AdvancedSearchButton';
 export { LogoutButton } from './LogoutButton';
 export { ModalInfo } from './ModalInfo';
