@@ -1,0 +1,25 @@
+
+.modal-Register {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-content {
+    width: 750px;
+    /*border: 1px solid red;*/
+}
+
+.izq,
+.der {
+    padding: 30px;
+}
+
+.doble {
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.doble .primero {
+    margin-right: 7px;
+}
