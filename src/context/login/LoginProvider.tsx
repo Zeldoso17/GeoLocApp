@@ -6,6 +6,7 @@ import { LoginContext } from "./LoginContext";
 import { loginReducer } from './LoginReducer'
 import loginApi from '../../apis/loginApi';
 import { LoginResponse } from "../../interfaces/login";
+import { toString } from 'lodash';
 
 export interface LoginState {
     user: Object,
@@ -38,6 +39,7 @@ export const LoginProvider = ({ children }: Props) => {
         .then(response => {
             dispatch({ type: 'setUser', payload: response.data.user })
             localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('isEmpresa', response.data.user.isEmpresa.toString())
             navigate('/mapa')
         })
 

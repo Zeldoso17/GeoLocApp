@@ -4,6 +4,7 @@ import { RegisterPlaceButton, AdvancedSearchButton, BtnMyLocation, MapView, Sear
 export const HomePage = () => {
 
   const token = localStorage.getItem('token')
+  const isEmpresa = localStorage.getItem('isEmpresa')
 
   return (
     <div>
@@ -13,7 +14,7 @@ export const HomePage = () => {
         <SearchBar placeholder="Radio de búsqueda (metros)" class="radio-container" />
         <SearchButton />
         <AdvancedSearchButton />
-        <RegisterPlaceButton />
+        {isEmpresa === 'true' && <RegisterPlaceButton />}
         {token && <LogoutButton />}
     </div>
   )

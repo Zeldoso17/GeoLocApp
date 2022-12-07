@@ -20,6 +20,7 @@ export const LogoutButton = () => {
         })
         .then(response => {
             localStorage.removeItem('token')
+            localStorage.removeItem('isEmpresa')
             navigate('/')
         })
     }

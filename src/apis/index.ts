@@ -1,3 +1,4 @@
+export { default as registerPlaceApi} from './registerPlace';
 export { default as searchSpecificPlaceApi } from './searchSpecificPlaceApi';
 export { default as getClaseActividadApi} from './getClaseActividadApi';
 export { default as logoutApi} from './logoutApi';

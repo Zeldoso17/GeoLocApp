@@ -14,4 +14,5 @@ export interface User {
     telefono:              string;
     usuario_administrador: boolean;
     activo:                boolean;
+    isEmpresa:             boolean;
 }

@@ -115,10 +115,23 @@
     top: 10px;
 }
 
-.register .email .email-container input {
+.register .email-checkBox .email-container input {
     display: flex;
     width: 73%;
 }
+
+.form-check {
+    position: relative;
+    top: 40px;
+    left: 65px;
+}
+
+.form-check .check-input {
+    width: 3%;
+    height: 20px;
+}
+
+
 
 .password-confirm {
     position: relative;

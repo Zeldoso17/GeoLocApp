@@ -24,15 +24,22 @@ export const Registro = () => {
   const navigate = useNavigate()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value)
     setData({ ...data, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    console.log(data)
     if (isValidated(data)) {
       registrarUsuario( data )
       navigate('/')
     }
+  }
+
+  const onCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.checked)
+    setData({ ...data, [e.target.name]: e.target.checked })
   }
 
   return (
@@ -74,7 +81,7 @@ export const Registro = () => {
                 </div>
               </div>
               { /* Input para el CORREO */}
-              <div className="one email">
+              <div className="one email-checkBox">
                 <div className="first-container email-container">
                   <label htmlFor="name">Correo Electrónico: </label>
                   <input type="email" onChange={handleInputChange} placeholder='Introduce tu email' name="email" id="" />
@@ -91,6 +98,16 @@ export const Registro = () => {
                   <input type="text" onChange={handleInputChange} placeholder='Repite tu contraseña' name="password2" />
                 </div>
               </div>
+
+              { /* CheckBox */}
+              <div className="form-check">
+                <input className="form-check-input check-input" onChange={onCheckChange} type="checkbox" name="isEmpresa" value="" id="flexCheckDefault" />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                  ¿Tu cuenta es de empresa?
+                </label>
+              </div>
+
+
               {/* Boton de registrate */}
               <input type="submit" className='boton' value={'Registrarme'} />
             </form>
