@@ -53,6 +53,8 @@ export const MapProvider = ({ children }: Props) => {
 
     let direcciones: Array<string> = [];
 
+    const isModal = localStorage.getItem("isModal");
+
     const getRoute = (lugar: Lugares) => {
         if (!userLocation) return; // Validamos que tengamos la ubicación del usuario
         const longitud = parseFloat(lugar.Longitud); // obtenemos la longitud a partir de la interfaz creada
@@ -83,8 +85,6 @@ export const MapProvider = ({ children }: Props) => {
         setPlaceData(respuesta.data)
 
         console.log("setIsInfo -> ", isInfo)
-
-        
     }
 
     useEffect(() => {
@@ -275,6 +275,7 @@ export const MapProvider = ({ children }: Props) => {
                 { isRoute && <Directions distancia={kms} tiempo={mins} /> }
                 { isRoute && <Button className='more-info' type="button" onClick={() => getPlaceInfo(id) }>Mas información</Button> }
                 { isInfo && <ModalInfo info={placeData} showModal={showModal} setShowModal={setShowModal} />}
+                { /*isModal && <ModalInfo info={placeData} showModal={showModal} setShowModal={setShowModal} />*/ }
             </MapaContext.Provider>
         </div>
     )

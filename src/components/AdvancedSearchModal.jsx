@@ -5,7 +5,7 @@ import { Modal, Form, ButtonGroup, Button } from 'react-bootstrap'
 
 import { searchSpecificPlaceApi } from '../apis'
 import { MapaContext, AdvancedSearchContext } from '../context'
-import { createMarkerAndPopup } from '../helpers'
+import { createMarkerAndPopup } from '../helpers/'
 
 import './css/AdvancedSearch.css'
 
@@ -24,24 +24,29 @@ export const AdvancedSearchModal = (props) => {
     const [dataPlaces, setDataPlaces] = useState([])
 
     const { map } = useContext(MapaContext)
-    const { searchLugares, lugares } = useContext(AdvancedSearchContext)
+    //const { searchLugares, lugares } = useContext(AdvancedSearchContext)
 
-    const searchPlace = () => {
+    const searchPlace = async () => {
         const Token = localStorage.getItem('token')
-        searchSpecificPlaceApi.get('/api/getPlace/', { params: dataSearch, headers: { Authorization: `Token ${Token}` } })
-        .then(response => {
-            setDataPlaces(response.data.data)
+        await searchSpecificPlaceApi.get('/api/getPlace/', { params: dataSearch, headers: { Authorization: `Token ${Token}` } })
+        .then( response => {
+            console.log("Respuesta -> ", response)
+            setDataPlaces(() => response.data.data)
+            console.log("DATINGA -> ", response.data.data)
         })
     }
  
     const buscar = () => {
         console.log('Buscando....')
         validarObjeto(dataSearch)
+        console.log("Data Search -> ", dataSearch)
         searchPlace()
+        console.log("DATA -> ", dataPlaces);
         createMarkerAndPopup( dataPlaces, map )
         console.log('jejeje')
         setShowModal(false);
         setDataSearch(initialData())
+        console.log("DATA 2 -> ", dataPlaces);
     }
 
     const handleChange = (event) => {

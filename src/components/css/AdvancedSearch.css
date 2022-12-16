@@ -15,3 +15,25 @@
 .modal-footer .grupo-botones .successButton {
     width: 20%;
 }
+
+/* PopUp */
+
+.mapboxgl-popup {
+    position: relative;
+}
+
+.mapboxgl-popup-content {
+    width: 600px;
+    padding: 8px;
+    z-index: 500;
+}
+
+.mapboxgl-popup-content .Title {
+    margin-left: 170px;
+}
+
+.mapboxgl-popup-content button {
+    font-size: 35px;
+    margin-top: 6px;
+    margin-right: 5px;
+}

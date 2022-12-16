@@ -1,9 +1,9 @@
 import React, { Dispatch } from 'react'
 import { Modal } from 'react-bootstrap'
-import { LocalResponse } from '../interfaces/local'
+import { LocalResponse, LocalResponseBD } from '../interfaces/local'
 
 interface Props {
-    info: Array<LocalResponse>,
+    info: Array<LocalResponse> | Array<LocalResponseBD>,
     showModal: boolean,
     setShowModal: Dispatch<React.SetStateAction<boolean>>
 }
