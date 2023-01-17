@@ -55,9 +55,7 @@ export const Login = () => {
               <label htmlFor="contraseña">Contraseña</label>
               <input onChange={handleInputChange} placeholder="Ingresa tu contraseña" name="password" type="password" id="contraseña" />
             </div>
-            <div className="password-olvidada">
-              <Link to={''}>Olvidé mi contraseña</Link>
-            </div>
+            
             <div className="input">
               <input type="submit" value="Iniciar Sesión" />
               <span> ¿No tienes una cuenta? </span><Link to={'/registro'}>Crea una aquí</Link>
