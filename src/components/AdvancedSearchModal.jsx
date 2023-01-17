@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { Marker, Popup } from 'mapbox-gl'
 import { Modal, Form, ButtonGroup, Button } from 'react-bootstrap'
@@ -23,26 +23,35 @@ export const AdvancedSearchModal = (props) => {
 
     const [dataPlaces, setDataPlaces] = useState([])
 
+
+
     const { map } = useContext(MapaContext)
     //const { searchLugares, lugares } = useContext(AdvancedSearchContext)
 
+    /*useEffect(() => {
+        console.log('entro')
+    }, [dataPlaces])*/
+
     const searchPlace = async () => {
         const Token = localStorage.getItem('token')
-        await searchSpecificPlaceApi.get('/api/getPlace/', { params: dataSearch, headers: { Authorization: `Token ${Token}` } })
+        /*await searchSpecificPlaceApi.get('/api/getPlace/', { params: dataSearch, headers: { Authorization: `Token ${Token}` } })
         .then( response => {
             console.log("Respuesta -> ", response)
             setDataPlaces(() => response.data.data)
             console.log("DATINGA -> ", response.data.data)
-        })
+        })*/
+
+        const response = await searchSpecificPlaceApi.get('/api/getPlace/', { params: dataSearch, headers: { Authorization: `Token ${Token}` } })
+        return response.data.data
+
     }
- 
-    const buscar = () => {
+
+    const buscar = async () => {
         console.log('Buscando....')
         validarObjeto(dataSearch)
         console.log("Data Search -> ", dataSearch)
-        searchPlace()
-        console.log("DATA -> ", dataPlaces);
-        createMarkerAndPopup( dataPlaces, map )
+        let data = await searchPlace()
+        createMarkerAndPopup(data, map)
         console.log('jejeje')
         setShowModal(false);
         setDataSearch(initialData())
@@ -52,7 +61,7 @@ export const AdvancedSearchModal = (props) => {
     const handleChange = (event) => {
         setDataSearch({ ...dataSearch, [event.target.name]: event.target.value });
     }
-    
+
     return (
         <>
             <Modal show={showModal} onHide={closeModal}>
@@ -71,7 +80,7 @@ export const AdvancedSearchModal = (props) => {
                                 <option hidden={true}>Selecciona una opción</option>
                                 {
                                     data[0].map((opt, key) => {
-                                        return(
+                                        return (
                                             <option key={key} value={opt.Clase_actividad}>{opt.Clase_actividad}</option>
                                         )
                                     })
@@ -109,18 +118,18 @@ export const AdvancedSearchModal = (props) => {
 
 function initialData() {
     return {
-      Nombre: '',
-      Clase_actividad: '',
-      Calle: '',
-      Colonia: '',
-      CP: '',
-      Ubicacion: '',
+        Nombre: '',
+        Clase_actividad: '',
+        Calle: '',
+        Colonia: '',
+        CP: '',
+        Ubicacion: '',
     }
 }
 
-function validarObjeto( dataSearch ){
-    for(let clave in dataSearch) {
-        if(dataSearch[clave] === "" || dataSearch[clave] === 'Vacio'){
+function validarObjeto(dataSearch) {
+    for (let clave in dataSearch) {
+        if (dataSearch[clave] === "" || dataSearch[clave] === 'Vacio') {
             delete dataSearch[clave]
         }
     }
